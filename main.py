@@ -63,8 +63,21 @@ display = """
 SELECT *
 FROM teacher;
 """
+#updating information in teacher table
+update = """
+UPDATE teacher
+SET last_name="Greene" 
+WHERE first_name = "Stefanie";
+"""
+delete_employee = """
+DELETE FROM teacher 
+WHERE first_name = "Stefanie"
+"""
+drop_table = """
+DROP TABLE teacher
+"""
 connection = create_server_connection("localhost", "root", "student", "hospital")
-
+execute_query(connection, drop_table)
 results = read_query(connection, display)
 for result in results:
     print(result)
