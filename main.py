@@ -29,6 +29,16 @@ def execute_query(connection, query):
         print("Query successful")
     except Error as err:
         print(f"Error: '{err}'")
+def read_query(connection, query):
+    cursor = connection.cursor()
+    result = None
+    try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result
+    except Error as err:
+        print(f"Error: '{err}'")
+
 create_teacher_table = """ 
 CREATE TABLE teacher (
   teacher_id INT PRIMARY KEY,
@@ -49,5 +59,12 @@ INSERT INTO teacher VALUES
 (5, 'Isobel', 'Ivanova', 'RUS',  '1963-05-30',  56789, '+491772635467'),
 (6, 'Niamh', 'Murphy', 'ENG',  '1995-09-08',  67890, '+491231231232');
 """
+display = """
+SELECT *
+FROM teacher;
+"""
 connection = create_server_connection("localhost", "root", "student", "hospital")
-execute_query(connection, table_teacher)
+
+results = read_query(connection, display)
+for result in results:
+    print(result)
