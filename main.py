@@ -76,8 +76,10 @@ WHERE first_name = "Stefanie"
 drop_table = """
 DROP TABLE teacher
 """
+drop_db = """
+DROP DATABASE hospital"""
 connection = create_server_connection("localhost", "root", "student", "hospital")
-execute_query(connection, drop_table)
-results = read_query(connection, display)
-for result in results:
-    print(result)
+execute_query(connection, drop_db)
+#results = read_query(connection, display)
+#for result in results:
+ #   print(result)
